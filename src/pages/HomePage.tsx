@@ -172,7 +172,7 @@ const HomePage = () => {
             <motion.p variants={fadeUp} className="mt-6 text-lg md:text-xl text-muted-foreground max-w-lg mx-auto font-body italic">Fine dining under the stars. Where every night tells a story.</motion.p>
             <motion.div variants={fadeUp} className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <button onClick={() => setShowModal(true)} className="px-8 py-4 bg-primary text-primary-foreground font-mono text-sm uppercase tracking-widest rounded-lg hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/20">
-                Currently at the restaurant?
+              <b>SET YOUR MUSIC AT NIGHT OWL HUB</b>
               </button>
             </motion.div>
           </motion.div>
@@ -183,9 +183,9 @@ const HomePage = () => {
             <motion.div className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm px-4" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <motion.div className="bg-card border border-border rounded-2xl p-8 max-w-lg w-full relative" initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}>
                 <button onClick={() => setShowModal(false)} className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors"><X size={20} /></button>
-                <h2 className="font-display text-2xl font-bold text-foreground mb-2">Select Your Location</h2>
-                <p className="text-sm text-muted-foreground mb-6">Choose your outlet below</p>
-                <div className="space-y-3">
+                {/* <h2 className="font-display text-2xl font-bold text-foreground mb-2">Select Your Location</h2> */}
+                {/* <p className="text-sm text-muted-foreground mb-6">Choose your outlet below</p> */}
+                {/* <div className="space-y-3">
                   {locations.map((loc, i) => (
                     <a key={i} href={loc.mapUrl} target="_blank" rel="noopener noreferrer" className="flex items-start gap-3 p-4 rounded-xl border border-border bg-muted/30 hover:border-primary/50 hover:bg-muted/50 transition-all card-glow">
                       <MapPin size={18} className="text-primary mt-0.5 shrink-0" />
@@ -195,14 +195,14 @@ const HomePage = () => {
                       </div>
                     </a>
                   ))}
-                </div>
+                </div> */}
                 <div className="mt-6 p-4 rounded-xl bg-muted/30 border border-border flex items-center gap-3">
                   <Music size={18} className="text-primary shrink-0" />
-                  <div>
-                    <p className="text-sm font-semibold text-foreground">Now Playing 🎵</p>
-                    <p className="text-xs text-muted-foreground">Hear your favorite song while eating</p>
+                  <div><a href="https://spotify.link/dOVWGgxZk1b">
+                    <p className="text-sm font-semibold text-foreground">Join our spotify Jam 🎵</p>
+                    <p className="text-xs text-muted-foreground">Hear your favorite song while eating</p></a>
                   </div>
-                  <a href="https://open.spotify.com" target="_blank" rel="noopener noreferrer" className="ml-auto text-xs font-mono uppercase tracking-widest text-primary hover:underline">Listen</a>
+                  <a href="https://spotify.link/dOVWGgxZk1b" target="_blank" rel="noopener noreferrer" className="ml-auto text-xs font-mono uppercase tracking-widest text-primary hover:underline">Listen</a>
                 </div>
               </motion.div>
             </motion.div>

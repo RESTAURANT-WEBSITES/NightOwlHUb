@@ -40,7 +40,7 @@ const Index = () => {
             className="bokeh-circle"
             style={{
               width: 30 + i * 20,
-              height: 30 + i * 20,
+              height: 90 + i * 20,
               top: `${15 + i * 12}%`,
               left: `${10 + i * 15}%`,
               animationDelay: `${i * 1.5}s`,
@@ -49,9 +49,9 @@ const Index = () => {
         ))}
 
         {/* Hero content */}
-        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 text-center">
+        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-6 pt-24 text-center">
           <motion.div variants={stagger} initial="hidden" animate="show">
-            <motion.p variants={fadeUp} className="font-mono text-xs uppercase tracking-[0.4em] text-muted-foreground mb-4">
+            <motion.p variants={fadeUp} className="mt-16 font-mono text-xs uppercase tracking-[0.4em] text-muted-foreground mb-4">
               Welcome to
             </motion.p>
             <motion.h1
@@ -66,9 +66,8 @@ const Index = () => {
             <motion.div variants={fadeUp} className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <button
                 onClick={() => setShowModal(true)}
-                className="px-8 py-4 bg-primary text-primary-foreground font-mono text-sm uppercase tracking-widest rounded-lg hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/20"
-              >
-                Currently at the restaurant?
+                className="px-8 py-4 bg-primary text-primary-foreground font-mono text-sm uppercase tracking-widest rounded-lg hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/20">
+                Set Music at Your Restaurant
               </button>
             </motion.div>
           </motion.div>
@@ -137,7 +136,7 @@ const Index = () => {
           )}
         </AnimatePresence>
       </div>
-    </PageTransition>
+    </PageTransition >
   );
 };
 

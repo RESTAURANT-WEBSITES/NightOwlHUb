@@ -1,7 +1,6 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { motion } from 'framer-motion';
 import OwlSVG from './OwlSVG';
 
 const navLinks = [
@@ -12,20 +11,12 @@ const navLinks = [
   { label: 'Contact', href: '#contact' },
 ];
 
-const NAVBAR_HEIGHT = 80;
+const NAVBAR_HEIGHT = 120; // Increased height for vertical layout
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('#hero');
   const location = useLocation();
   const isHome = location.pathname === '/';
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     if (!isHome) return;
@@ -39,7 +30,7 @@ const Navbar = () => {
           }
         });
       },
-      { rootMargin: `-${NAVBAR_HEIGHT}px 0px -60% 0px`, threshold: 0 }
+      { rootMargin: `-80px 0px -60% 0px`, threshold: 0 }
     );
 
     sections.forEach((id) => {
@@ -49,14 +40,7 @@ const Navbar = () => {
     return () => observer.disconnect();
   }, [isHome]);
 
-  const handleMobileNavClick = useCallback((href: string) => {
-    setMobileOpen(false);
-    setTimeout(() => {
-      document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
-    }, 300);
-  }, []);
-
-  const handleDesktopNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!isHome) return;
     e.preventDefault();
     document.querySelector(href)?.scrollIntoView({ behavior: 'smooth' });
@@ -64,49 +48,50 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'bg-background/80 backdrop-blur-xl shadow-lg shadow-primary/5' : 'bg-transparent'
-      }`}
-      initial={{ y: -80 }}
+      className="fixed top-0 left-0 right-0 z-50 bg-[#0d0a0e]/55 backdrop-blur-xl border-b border-amber-500/15 py-4 shadow-lg shadow-black/40"
+      initial={{ y: -NAVBAR_HEIGHT }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
     >
-      <div className="container mx-auto flex items-center justify-between px-6 py-4">
+      <div className="container mx-auto flex flex-col items-center gap-6">
+        {/* Logo at the top */}
         {isHome ? (
-          <a href="#hero" className="flex items-center gap-2 group">
-            <OwlSVG size={36} />
-            <span className="font-display text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+          <a href="#hero" className="flex items-center gap-3 group">
+            <OwlSVG size={40} />
+            <span className="font-display text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
               Night Owl Hub
             </span>
           </a>
         ) : (
-          <Link to="/" className="flex items-center gap-2 group">
-            <OwlSVG size={36} />
-            <span className="font-display text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+          <Link to="/" className="flex items-center gap-3 group">
+            <OwlSVG size={40} />
+            <span className="font-display text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
               Night Owl Hub
             </span>
           </Link>
         )}
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Navigation links below the logo */}
+        <div className="flex items-center gap-6 md:gap-10">
           {navLinks.map((link) => {
             const isActive = isHome && activeSection === link.href;
-            const linkClass = `font-mono text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:text-primary ${
-              isActive ? 'text-primary font-semibold' : 'text-muted-foreground'
-            }`;
+            const linkClass = `font-mono text-xs uppercase tracking-[0.2em] transition-all duration-300 hover:text-primary ${isActive ? 'text-primary font-semibold' : 'text-muted-foreground'
+              }`;
 
             if (isHome) {
               return (
                 <a
                   key={link.href}
                   href={link.href}
-                  onClick={(e) => handleDesktopNavClick(e, link.href)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className={`relative ${linkClass}`}
                 >
                   {link.label}
                   {isActive && (
-                    <span className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full" />
+                    <motion.span
+                      layoutId="activeTab"
+                      className="absolute -bottom-2 left-0 right-0 h-0.5 bg-primary rounded-full shadow-[0_0_8px_#e8a838]"
+                    />
                   )}
                 </a>
               );
@@ -118,64 +103,7 @@ const Navbar = () => {
             );
           })}
         </div>
-
-        {/* Mobile toggle */}
-        <button
-          className="md:hidden text-foreground"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
-
-      {/* Mobile drawer */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            className="md:hidden fixed inset-0 top-[68px] bg-background/95 backdrop-blur-xl z-40"
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="flex flex-col items-center gap-8 pt-16">
-              {navLinks.map((link, i) => {
-                const isActive = isHome && activeSection === link.href;
-                const linkClass = `font-display text-2xl transition-colors ${
-                  isActive ? 'text-primary' : 'text-foreground hover:text-primary'
-                }`;
-
-                if (isHome) {
-                  return (
-                    <motion.a
-                      key={link.href}
-                      href={link.href}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        handleMobileNavClick(link.href);
-                      }}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: i * 0.08 }}
-                      className={linkClass}
-                    >
-                      {link.label}
-                    </motion.a>
-                  );
-                }
-                return (
-                  <motion.div key={link.href} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }}>
-                    <Link to={`/${link.href}`} className={linkClass} onClick={() => setMobileOpen(false)}>
-                      {link.label}
-                    </Link>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.nav>
   );
 };
