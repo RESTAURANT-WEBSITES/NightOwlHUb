@@ -1,7 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import OwlSVG from './OwlSVG';
 
-const Footer = () => (
+const navItems = [
+  { label: 'About', href: '#about' },
+  { label: 'Menu', href: '#menu' },
+  { label: 'Gallery', href: '#gallery' },
+  { label: 'Reservations', href: '#reservations' },
+  { label: 'Contact', href: '#contact' },
+];
+
+const Footer = () => {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
+
+  return (
   <footer className="border-t border-border bg-card/50 noise-overlay">
     <div className="container mx-auto px-6 py-12">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -15,11 +27,17 @@ const Footer = () => (
         <div>
           <h4 className="font-mono text-xs uppercase tracking-widest text-primary mb-4">Navigate</h4>
           <div className="flex flex-col gap-2">
-            {['About', 'Menu', 'Gallery', 'Reservations', 'Contact'].map((l) => (
-              <Link key={l} to={`/${l.toLowerCase()}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
-                {l}
-              </Link>
-            ))}
+            {navItems.map(({ label, href }) =>
+              isHome ? (
+                <a key={label} href={href} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  {label}
+                </a>
+              ) : (
+                <Link key={label} to={`/${href}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                  {label}
+                </Link>
+              )
+            )}
           </div>
         </div>
         <div>
@@ -33,6 +51,7 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-);
+  );
+};
 
 export default Footer;

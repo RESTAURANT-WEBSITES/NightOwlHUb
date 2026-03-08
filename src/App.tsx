@@ -9,12 +9,7 @@ import { AdminProvider } from './context/AdminContext';
 import OwlIntro from './components/OwlIntro';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import Index from "./pages/Index";
-import About from "./pages/About";
-import MenuPage from "./pages/MenuPage";
-import Gallery from "./pages/Gallery";
-import Reservations from "./pages/Reservations";
-import Contact from "./pages/Contact";
+import HomePage from "./pages/HomePage";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 
@@ -41,12 +36,7 @@ const App = () => {
           <BrowserRouter>
             <Navbar />
             <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/menu" element={<MenuPage />} />
-              <Route path="/gallery" element={<Gallery />} />
-              <Route path="/reservations" element={<Reservations />} />
-              <Route path="/contact" element={<Contact />} />
+              <Route path="/" element={<HomePage />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
