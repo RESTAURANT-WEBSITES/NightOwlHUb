@@ -11,7 +11,9 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import HomePage from "./pages/HomePage";
 import Admin from "./pages/Admin";
+import Reservations from "./pages/Reservations";
 import NotFound from "./pages/NotFound";
+import ReservationButton from './components/ReservationButton';
 
 const queryClient = new QueryClient();
 
@@ -35,8 +37,10 @@ const App = () => {
           </AnimatePresence>
           <BrowserRouter>
             <Navbar />
+            <ReservationButton />
             <Routes>
               <Route path="/" element={<HomePage />} />
+              <Route path="/reservations" element={<Reservations />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
