@@ -1,0 +1,92 @@
+[
+  {
+    "id": "1",
+    "name": "Midnight Truffle Risotto",
+    "description": "Creamy arborio rice with black truffle shavings, parmesan, and a drizzle of truffle oil.",
+    "image": "",
+    "price": 28,
+    "category": "Mains",
+    "rating": 4.8
+  },
+  {
+    "id": "2",
+    "name": "Ember Grilled Ribeye",
+    "description": "16oz prime ribeye, charred over open flame, served with roasted garlic butter.",
+    "image": "",
+    "price": 45,
+    "category": "Mains",
+    "rating": 4.9
+  },
+  {
+    "id": "3",
+    "name": "Owl's Nest Salad",
+    "description": "Mixed greens, candied walnuts, blue cheese, and honey-balsamic vinaigrette.",
+    "image": "",
+    "price": 16,
+    "category": "Starters",
+    "rating": 4.5
+  },
+  {
+    "id": "4",
+    "name": "Smoked Salmon Tartare",
+    "description": "Hand-cut smoked salmon with capers, shallots, and lemon crème fraîche.",
+    "image": "",
+    "price": 22,
+    "category": "Starters",
+    "rating": 4.7
+  },
+  {
+    "id": "5",
+    "name": "Candlelit Crème Brûlée",
+    "description": "Classic vanilla bean custard with a crackling caramelized sugar top.",
+    "image": "",
+    "price": 14,
+    "category": "Desserts",
+    "rating": 4.9
+  },
+  {
+    "id": "6",
+    "name": "Dark Chocolate Lava Cake",
+    "description": "Rich molten chocolate center, served with vanilla bean ice cream.",
+    "image": "",
+    "price": 16,
+    "category": "Desserts",
+    "rating": 4.8
+  },
+  {
+    "id": "7",
+    "name": "Twilight Old Fashioned",
+    "description": "Bourbon, bitters, orange peel, and a smoked cherry garnish.",
+    "image": "",
+    "price": 18,
+    "category": "Drinks",
+    "rating": 4.6
+  },
+  {
+    "id": "8",
+    "name": "Moonlit Espresso Martini",
+    "description": "Fresh espresso, vodka, Kahlúa, shaken to perfection.",
+    "image": "",
+    "price": 16,
+    "category": "Drinks",
+    "rating": 4.7
+  },
+  {
+    "id": "9",
+    "name": "Night Owl Wings",
+    "description": "Crispy chicken wings glazed with spicy honey-sriracha sauce.",
+    "image": "",
+    "price": 14,
+    "category": "Starters",
+    "rating": 4.6
+  },
+  {
+    "id": "10",
+    "name": "Starlit Lobster Bisque",
+    "description": "Rich and velvety lobster bisque finished with brandy cream.",
+    "image": "",
+    "price": 20,
+    "category": "Starters",
+    "rating": 4.8
+  }
+]
