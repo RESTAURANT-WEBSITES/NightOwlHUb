@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
 import OwlSVG from './OwlSVG';
 
@@ -6,7 +6,41 @@ const OwlIntro = ({ onComplete }: { onComplete: () => void }) => {
   const [phase, setPhase] = useState(0); // 0=black, 1=eyes, 2=face, 3=stare, 4=fly, 5=done
   const [skipped, setSkipped] = useState(false);
   const controls = useAnimation();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
+  useEffect(() => {
+    // Start audio immediately or at phase 1
+    const audio = new Audio('/owlsound.mp3');
+    audioRef.current = audio;
+
+    const playAudio = () => {
+      audio.play().catch(error => {
+        console.warn("Autoplay was prevented. Audio will play upon user interaction.", error);
+        // Try playing again on first click if autoplay fails
+        window.addEventListener('click', () => {
+          audio.play().catch(console.error);
+        }, { once: true });
+      });
+    };
+
+    playAudio();
+
+    // Stop audio after 4 seconds
+    const stopTimer = setTimeout(() => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
+    }, 4000);
+
+    return () => {
+      clearTimeout(stopTimer);
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current = null;
+      }
+    };
+  }, []);
   useEffect(() => {
     if (skipped) return;
 
@@ -28,6 +62,10 @@ const OwlIntro = ({ onComplete }: { onComplete: () => void }) => {
   }, [skipped, onComplete]);
 
   const handleSkip = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
     setSkipped(true);
     onComplete();
   };
@@ -111,26 +149,26 @@ const OwlIntro = ({ onComplete }: { onComplete: () => void }) => {
               animate={
                 phase === 4
                   ? {
-                      scale: 0.08,
-                      x: '-42vw',
-                      y: '-44vh',
-                      opacity: 1,
-                      filter: ['blur(0px)', 'blur(4px)', 'blur(0px)'],
-                    }
+                    scale: 0.08,
+                    x: '-42vw',
+                    y: '-44vh',
+                    opacity: 1,
+                    filter: ['blur(0px)', 'blur(4px)', 'blur(0px)'],
+                  }
                   : phase === 3
-                  ? {
+                    ? {
                       opacity: 1,
                       scale: [1, 1.02, 1],
                       rotate: [0, -5, 5, 0],
                     }
-                  : { opacity: 1, scale: 1 }
+                    : { opacity: 1, scale: 1 }
               }
               transition={
                 phase === 4
                   ? { duration: 0.8, ease: [0.4, 0, 0.2, 1] }
                   : phase === 3
-                  ? { duration: 1.5, ease: 'easeInOut' }
-                  : { duration: 0.7, ease: 'easeOut' }
+                    ? { duration: 1.5, ease: 'easeInOut' }
+                    : { duration: 0.7, ease: 'easeOut' }
               }
               style={{ width: '80vmin', height: '80vmin' }}
               className="flex items-center justify-center"

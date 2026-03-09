@@ -172,7 +172,7 @@ const HomePage = () => {
             <motion.p variants={fadeUp} className="mt-6 text-lg md:text-xl text-muted-foreground max-w-lg mx-auto font-body italic">Fine dining under the stars. Where every night tells a story.</motion.p>
             <motion.div variants={fadeUp} className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
               <button onClick={() => setShowModal(true)} className="px-8 py-4 bg-primary text-primary-foreground font-mono text-sm uppercase tracking-widest rounded-lg hover:bg-primary/90 transition-all hover:shadow-lg hover:shadow-primary/20">
-              <b>SET YOUR MUSIC AT NIGHT OWL HUB</b>
+                <b>SET YOUR OWN MUSIC AT NIGHT OWL HUB</b>
               </button>
             </motion.div>
           </motion.div>
@@ -198,11 +198,11 @@ const HomePage = () => {
                 </div> */}
                 <div className="mt-6 p-4 rounded-xl bg-muted/30 border border-border flex items-center gap-3">
                   <Music size={18} className="text-primary shrink-0" />
-                  <div><a href="https://spotify.link/dOVWGgxZk1b">
+                  <div><a href="https://spotify.link/dKQktF44k1b">
                     <p className="text-sm font-semibold text-foreground">Join our spotify Jam 🎵</p>
                     <p className="text-xs text-muted-foreground">Hear your favorite song while eating</p></a>
                   </div>
-                  <a href="https://spotify.link/dOVWGgxZk1b" target="_blank" rel="noopener noreferrer" className="ml-auto text-xs font-mono uppercase tracking-widest text-primary hover:underline">Listen</a>
+                  <a href="https://spotify.link/dKQktF44k1b" target="_blank" rel="noopener noreferrer" className="ml-auto text-xs font-mono uppercase tracking-widest text-primary hover:underline">Listen</a>
                 </div>
               </motion.div>
             </motion.div>

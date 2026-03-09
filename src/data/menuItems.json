@@ -1,7 +1,7 @@
 [
   {
     "id": "1",
-    "name": "Midnight Truffle Risotto",
+    "name": "Owl's Shawarma",
     "description": "Creamy arborio rice with black truffle shavings, parmesan, and a drizzle of truffle oil.",
     "image": "",
     "price": 28,
@@ -10,7 +10,7 @@
   },
   {
     "id": "2",
-    "name": "Ember Grilled Ribeye",
+    "name": "Alfahm",
     "description": "16oz prime ribeye, charred over open flame, served with roasted garlic butter.",
     "image": "",
     "price": 45,

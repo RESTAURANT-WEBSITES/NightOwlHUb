@@ -95,11 +95,10 @@ const MenuPage = () => {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-widest transition-all ${
-                  activeCategory === cat
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-muted text-muted-foreground hover:text-foreground'
-                }`}
+                className={`px-4 py-2 rounded-lg font-mono text-xs uppercase tracking-widest transition-all ${activeCategory === cat
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-muted text-muted-foreground hover:text-foreground'
+                  }`}
               >
                 {cat}
               </button>
@@ -133,9 +132,8 @@ const MenuPage = () => {
                     <button key={s} onClick={() => rateItem(item.id, s)}>
                       <Star
                         size={16}
-                        className={`transition-colors cursor-pointer ${
-                          s <= (ratings[item.id] || 0) ? 'text-primary fill-primary' : 'text-muted-foreground hover:text-primary'
-                        }`}
+                        className={`transition-colors cursor-pointer ${s <= (ratings[item.id] || 0) ? 'text-primary fill-primary' : 'text-muted-foreground hover:text-primary'
+                          }`}
                       />
                     </button>
                   ))}
