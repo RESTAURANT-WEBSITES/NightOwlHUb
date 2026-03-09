@@ -5,8 +5,6 @@ import defaultMenuItems from '../data/menuItems.json';
 import BackToTop from '../components/BackToTop';
 
 const locations = [
-  { name: 'Night Owl Hub — Downtown', address: '123 Midnight Ave, Downtown', mapUrl: 'https://maps.google.com' },
-  { name: 'Night Owl Hub — Westside', address: '456 Amber Lane, Westside', mapUrl: 'https://maps.google.com' },
   { name: 'Night Owl Hub — Harbor', address: '789 Starlight Blvd, Harbor District', mapUrl: 'https://maps.google.com' },
 ];
 
@@ -14,18 +12,9 @@ const stagger = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { stag
 const fadeUp = { hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.6 } } };
 
 const timeline = [
-  { year: '2018', title: 'The Dream Begins', desc: 'Founded with a vision of nocturnal fine dining.' },
-  { year: '2019', title: 'First Location Opens', desc: 'Downtown venue welcomes its first guests.' },
-  { year: '2021', title: 'Expansion', desc: 'Two new locations in Westside and Harbor District.' },
-  { year: '2023', title: 'Award-Winning', desc: 'Named Best Ambiance Restaurant by City Dining Awards.' },
-  { year: '2025', title: 'The Hub Grows', desc: 'Three thriving outlets, a beloved community space.' },
+  { year: '2026', title: 'Night Owl Hub', desc: 'Founded with a vision of nocturnal fine dining.' },
 ];
 
-const outlets = [
-  { name: 'Downtown', address: '123 Midnight Ave', city: 'Downtown District' },
-  { name: 'Westside', address: '456 Amber Lane', city: 'Westside Quarter' },
-  { name: 'Harbor', address: '789 Starlight Blvd', city: 'Harbor District' },
-];
 
 const categories = ['All', 'Starters', 'Mains', 'Desserts', 'Drinks'];
 const galleryImages = [
@@ -382,8 +371,8 @@ const HomePage = () => {
             <div className="space-y-8">
               <div className="space-y-4">
                 {[
-                  { icon: MapPin, text: '123 Midnight Ave, Downtown District' },
-                  { icon: Phone, text: '+1 (555) OWL-NITE' },
+                  { icon: MapPin, text: 'Night Owl Hub,Mundur, 9th Mile Road, Pudanur, Palakkad-678592, Kerala' },
+                  { icon: Phone, text: '+91 6238426420' },
                   { icon: Mail, text: 'hello@nightowlhub.com' },
                 ].map(({ icon: Icon, text }) => (
                   <div key={text} className="flex items-center gap-3">
@@ -404,10 +393,10 @@ const HomePage = () => {
               </div>
               <div className="rounded-2xl overflow-hidden border border-border h-64">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3024.2219901290355!2d-74.00369368400567!3d40.71312937933185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a23e28c1191%3A0x49f75d3281df052a!2sCity%20Hall%20Park!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+                  src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d411.3793582599517!2d76.56508641800482!3d10.839787483872438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2s!5e1!3m2!1sen!2sin!4v1773060425791!5m2!1sen!2sin"
                   width="100%"
                   height="100%"
-                  style={{ border: 0, filter: 'invert(0.9) hue-rotate(180deg) saturate(0.3)' }}
+                  style={{ border: 0 }}
                   allowFullScreen
                   loading="lazy"
                   title="Location"
@@ -463,19 +452,6 @@ const AboutSection = () => {
               <span className="font-mono text-xs text-primary tracking-widest">{item.year}</span>
               <h3 className="font-display text-xl font-semibold text-foreground mt-1">{item.title}</h3>
               <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-      <div className="container mx-auto px-6 py-16">
-        <h2 className="font-display text-3xl font-bold text-foreground text-center mb-12">Our Outlets</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {outlets.map((outlet, i) => (
-            <motion.div key={outlet.name} variants={fadeUp} initial="hidden" animate={isInView ? 'show' : 'hidden'} transition={{ delay: i * 0.1 }} className="p-6 rounded-2xl border border-border bg-card card-glow">
-              <MapPin size={20} className="text-primary mb-3" />
-              <h3 className="font-display text-lg font-bold text-foreground">{outlet.name}</h3>
-              <p className="text-sm text-muted-foreground mt-1">{outlet.address}</p>
-              <p className="text-sm text-muted-foreground">{outlet.city}</p>
             </motion.div>
           ))}
         </div>
