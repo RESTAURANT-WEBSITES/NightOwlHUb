@@ -199,7 +199,7 @@ const HomePage = () => {
         </AnimatePresence>
       </section>
 
-      {/* #about */}
+      {/* #about session*/}
       <AboutSection />
 
       {/* #menu */}
